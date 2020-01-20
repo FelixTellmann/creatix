@@ -1,4 +1,6 @@
 import React from 'react';
+import { MdSearch, MdCancel } from 'react-icons/md';
+
 import Link from 'next/link';
 
 export default () => (
@@ -15,9 +17,11 @@ export default () => (
         <a className="nav__link" href="/contact"><span className="nav__text">Contact</span></a>
 
       </nav>
-      <div className="layout__search">
-        <input type="text" />
-        <button>Submit</button>
+      <div className="layout__search search">
+        <input className="search__input" type="text" placeholder="Search" required/>
+        <MdSearch className="search__search-icon" />
+        <button className="search__cancel"><MdCancel className="search__cancel-icon" /></button>
+        <button className="search__submit">Submit</button>
       </div>
     </header>
     <aside className="layout__aside">
