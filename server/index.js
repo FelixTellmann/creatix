@@ -20,25 +20,25 @@ app.prepare().then(() => {
   server.use(session);
   server.use(passport.initialize());
   server.use(passport.session());
-  
+
   /*================ API Routes ================*/
   server.use(User({ passport }));
   server.use(Api());
-  
-  /*server.get('/', (req, res) => {
-    res.render('index.twig');
+
+  /* server.get('/', (req, res) => {
+   res.render('index.twig');
   });*/
-  
+
   /*================ Next js ================*/
   // Redirect any unauthorized pages routes to root
-  server.get(['/components', '/components/*', '/helpers', '/helpers/*'], (req, res) => {
+  server.get(['/components', '/components/*', '/helpers', '/helpers/!*'], (req, res) => {
     res.redirect('/');
   });
-  
+
   server.get('*', (req, res) => {
     return handle(req, res); // for all the react stuff
   });
-  
+
   server.listen(port, err => {
     if (err) throw err;
     console.log(`ready at http://localhost:${port}`);

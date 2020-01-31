@@ -27,7 +27,7 @@ export default function ({ passport }) {
   const changePasswordWithResetToken = makeChangePasswordWithResetToken({ User, db, bcrypt });
   const getDetail = makeGetDetail({ User, db });
   const router = Router();
-  
+
   /*================ Accessible when not logged in ================*/
   router.get('/user/register', isNotAuth, (req, res) => res.render('userRegister.twig'));
   router.post('/user/register', isNotAuth, register);
@@ -35,16 +35,16 @@ export default function ({ passport }) {
   router.get('/user/login', isNotAuth, (req, res) => res.render('userLogin.twig'));
   router.post('/user/login', isNotAuth, login);
   router.get('/user/forgotPassword', isNotAuth, (req, res) => res.render('userForgotPassword.twig'));
-  router.post('/user/forgotPasword', isNotAuth, createResetToken);
+  router.post('/user/forgotPassword', isNotAuth, createResetToken);
   router.get('/user/resetPassword/:email/:reset_token', isNotAuth, ({ params: { email, reset_token } }, res) => {
     return res.render('userForgotPasswordCreateNew.twig', { email, reset_token });
   });
-  
+
   router.post('/user/changePasswordWithResetToken', isNotAuth, changePasswordWithResetToken);
-  
+
   /*================ Accessible when logged in ================*/
-  router.get('/user/:id', /*isAuth,*/ getDetail);
   router.get('/user/logout', isAuth, logout);
+  router.get('/user/:id', isAuth, getDetail); /* TODO: Conflicting with /user/ routes*/
   /*router.get('/user/:id/edit', isAuth, (req, res) => res.render('userEdit.twig'));
   router.post('/user/:id/edit', isAuth, userEdit);
   router.post('/user/:id/delete', isAuth, userEdit);
