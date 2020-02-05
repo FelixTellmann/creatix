@@ -9,14 +9,15 @@ class Layout extends App {
     let pageProps = {};
     let navData = await (await fetch(`http://localhost:3000/api/navigation`)).json();
     let componentCategoryData = await (await fetch(`http://localhost:3000/api/component_category`)).json();
+    let componentData = await (await fetch(`http://localhost:3000/api/component`)).json();
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
-    return { ...pageProps, navData, componentCategoryData };
+    return { ...pageProps, navData, componentCategoryData, componentData };
   }
 
   render() {
-    const { Component, pageProps, navData, componentCategoryData } = this.props;
+    const { Component, pageProps, navData, componentCategoryData, componentData } = this.props;
     return (
       <page className="layout">
         <header className="layout__header">
@@ -27,7 +28,7 @@ class Layout extends App {
           <Search className="layout__search" />
         </header>
         <aside className="layout__aside">
-          <SideNavigation componentCategories={componentCategoryData} />
+          <SideNavigation componentCategories={componentCategoryData} components={componentData} />
         </aside>
         <main className="layout__main">
           <Component {...pageProps} />
@@ -36,7 +37,6 @@ class Layout extends App {
           Footer
         </footer>
       </page>
-
     );
   }
 }

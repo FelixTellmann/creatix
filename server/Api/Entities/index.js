@@ -3,4 +3,5 @@ export { default as ConversionUnit } from './ConversionUnit';
 export { default as InventoryItem } from './InventoryItem';
 export { default as Navgiation } from './Navigation';
 export { default as ComponentCategory  } from './ComponentCategory';
+export { default as Component  } from './Component';
 

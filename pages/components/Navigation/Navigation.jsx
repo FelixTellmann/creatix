@@ -33,7 +33,7 @@ const exampleNavigation = [
 
 export default function Navigation({ className, nav = exampleNavigation }) {
   return (
-    <nav className={`${className} nav`}>
+    <nav className={`${className || ""} nav`}>
       {
         nav.map(({ navigation_id, name, href }) => {
           return (

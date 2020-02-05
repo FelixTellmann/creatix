@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import DatabaseModel from './database';
-import { Navgiation, ComponentCategory } from './Entities';
+import { Navgiation, ComponentCategory, Component } from './Entities';
 import database from '../database';
 
 export default function () {
@@ -52,6 +52,7 @@ export default function () {
 
   makeApiRoutes(Navgiation);
   makeApiRoutes(ComponentCategory);
+  makeApiRoutes(Component);
 
   return router;
 }
