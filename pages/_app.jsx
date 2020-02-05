@@ -3,6 +3,7 @@ import App from 'next/app';
 import fetch from 'isomorphic-unfetch';
 import { Navigation, SideNavigation, Search } from './components';
 import './_app.scss';
+import { Page } from "./components/Page";
 
 class Layout extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -31,6 +32,7 @@ class Layout extends App {
           <SideNavigation componentCategories={componentCategoryData} components={componentData} />
         </aside>
         <main className="layout__main">
+          <Page />
           <Component {...pageProps} />
         </main>
         <footer className="layout__footer">

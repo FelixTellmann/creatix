@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Subnav} from './Subnav';
+import { Subnav }          from './Subnav';
 
 import './SideNavigation.scss';
 
@@ -13,7 +13,6 @@ export default function SideNavigation({ className, componentCategories, compone
           const categoryComponents = components.filter((item) => {
             return item.component_category_id === component_category_id;
           });
-          console.log(categoryComponents);
           return (
             <div key={component_category_id} className="secondary-nav__item">
               <a href="#" className="secondary-nav__link">
@@ -23,7 +22,6 @@ export default function SideNavigation({ className, componentCategories, compone
               {
                 categoryComponents.length > 0 &&
                 categoryComponents.map(({ component_id, name, description }) => {
-                  console.log(name);
                   return (
                     <Subnav key={component_id} name={name} />
                   );
